@@ -1,0 +1,1146 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>黄页仓库在线观看-老片修复与片单索引</title>
+<meta name="description" content="黄页仓库在线观看是收录上世纪港台与内地旧片、修复版本和放映线索的片库索引。按年份、片种、修复批次归档，附观看渠道对照与考据笔记，帮助查片、对版本、找放映。">
+<meta name="keywords" content="黄页仓库在线观看">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%232b241c'/%3E%3Cpath d='M14 20h36v8H14zM14 34h22v8H14z' fill='%23e0b25a'/%3E%3Ccircle cx='46' cy='38' r='7' fill='%23c9553d'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#f6f2e9;
+  --bg-soft:#efe8da;
+  --ink:#241f18;
+  --ink-2:#4a4236;
+  --ink-3:#7a7061;
+  --line:#d8cdb8;
+  --line-2:#c4b79c;
+  --brand:#2b241c;
+  --accent:#c9553d;
+  --gold:#b8892f;
+  --gold-soft:#e0b25a;
+  --card:#fffdf7;
+  --shadow:0 1px 2px rgba(43,36,28,.06),0 6px 18px rgba(43,36,28,.06);
+  --shadow-lift:0 2px 4px rgba(43,36,28,.08),0 10px 24px rgba(43,36,28,.10);
+  --radius:10px;
+  --radius-s:6px;
+  --font:"Noto Serif SC","Songti SC","Source Han Serif SC",Georgia,"Times New Roman",serif;
+  --font-sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --sp:clamp(14px,2.4vw,26px);
+  --stick-h:38px;
+  --head-h:60px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--font);font-size:16px;line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-weight:700;line-height:1.35;margin:0}
+p{margin:0 0 .9em}
+p:last-child{margin-bottom:0}
+ul,ol{margin:0;padding:0;list-style:none}
+button{font-family:inherit}
+
+/* ===== 吸顶区 ===== */
+.stick-wrap{position:sticky;top:0;z-index:60}
+.notice{
+  height:var(--stick-h);display:flex;align-items:center;gap:12px;
+  background:var(--brand);color:#f0e6d2;font-family:var(--font-sans);
+  font-size:12.5px;padding:0 var(--sp);overflow:hidden;white-space:nowrap;
+}
+.notice b{color:var(--gold-soft);font-weight:600;letter-spacing:.04em}
+.notice .sep{width:1px;height:14px;background:#5a4d3c;flex:none}
+.notice .roll{overflow:hidden;text-overflow:ellipsis;min-width:0}
+.notice .roll span{color:#d9cdb6}
+.site-head{
+  height:var(--head-h);display:flex;align-items:center;gap:16px;
+  background:rgba(246,242,233,.94);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);padding:0 var(--sp);
+}
+.brand{display:flex;align-items:center;gap:10px;flex:none}
+.brand svg{width:32px;height:32px;flex:none}
+.brand .bt{font-weight:700;font-size:17px;letter-spacing:.02em;font-family:var(--font)}
+.brand .bt small{display:block;font-size:10px;color:var(--ink-3);font-weight:400;letter-spacing:.14em;font-family:var(--font-sans)}
+.head-nav{display:flex;gap:4px;margin-left:8px;font-family:var(--font-sans);font-size:13.5px}
+.head-nav a{padding:6px 10px;border-radius:var(--radius-s);color:var(--ink-2);transition:background .18s,color .18s}
+.head-nav a:hover{background:var(--bg-soft);color:var(--ink)}
+.head-nav a.on{background:var(--brand);color:#f6f2e9}
+.head-tools{margin-left:auto;display:flex;align-items:center;gap:10px}
+.search{position:relative;display:flex;align-items:center}
+.search input{
+  width:190px;padding:7px 30px 7px 11px;font-size:13px;font-family:var(--font-sans);
+  border:1px solid var(--line-2);border-radius:20px;background:var(--card);color:var(--ink);
+  outline:none;transition:border-color .18s,box-shadow .18s;
+}
+.search input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,137,47,.16)}
+.search .ic{position:absolute;right:9px;top:50%;transform:translateY(-50%);color:var(--ink-3);pointer-events:none}
+.search-res{
+  position:absolute;top:calc(100% + 6px);right:0;width:280px;background:var(--card);
+  border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-lift);
+  padding:8px;font-family:var(--font-sans);font-size:13px;display:none;z-index:70;
+  max-height:300px;overflow:auto;
+}
+.search-res.show{display:block}
+.search-res a{display:block;padding:6px 8px;border-radius:var(--radius-s);color:var(--ink-2)}
+.search-res a:hover{background:var(--bg-soft)}
+.search-res .none{padding:8px;color:var(--ink-3)}
+.menu-btn{
+  display:none;align-items:center;justify-content:center;gap:6px;
+  width:38px;height:34px;background:var(--card);border:1px solid var(--line-2);
+  border-radius:var(--radius-s);cursor:pointer;color:var(--ink);
+}
+.menu-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.entry-btn{
+  font-family:var(--font-sans);font-size:13px;padding:7px 14px;border-radius:20px;
+  background:var(--accent);color:#fffdf7;border:none;cursor:pointer;transition:background .18s;
+}
+.entry-btn:hover{background:#b8462f}
+.entry-btn:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+
+/* ===== 锚点偏移 ===== */
+section[id],div[id].anchor{scroll-margin-top:calc(var(--stick-h) + var(--head-h) + 14px)}
+
+/* ===== 首屏 ===== */
+.hero{
+  background:linear-gradient(180deg,#efe8da 0%,var(--bg) 78%);
+  border-bottom:1px solid var(--line);
+  padding:calc(var(--sp) + 16px) var(--sp) var(--sp);
+  position:relative;overflow:hidden;
+}
+.hero-in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(20px,4vw,52px);align-items:center}
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);
+  font-size:12px;letter-spacing:.14em;color:var(--gold);border:1px solid rgba(184,137,47,.5);
+  padding:4px 11px;border-radius:20px;background:rgba(224,178,90,.12);margin-bottom:16px;
+}
+.hero h1{font-size:clamp(27px,4.2vw,44px);letter-spacing:.01em;margin-bottom:14px}
+.hero .lead{font-size:clamp(15px,1.7vw,17px);color:var(--ink-2);max-width:38em;line-height:1.9}
+.hero-acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);font-size:14px;
+  padding:11px 20px;border-radius:var(--radius-s);border:1px solid transparent;cursor:pointer;
+  transition:transform .18s,background .18s,border-color .18s;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-p{background:var(--brand);color:#f6f2e9}
+.btn-p:hover{background:#3c3226}
+.btn-s{background:transparent;border-color:var(--line-2);color:var(--ink)}
+.btn-s:hover{border-color:var(--gold);background:rgba(224,178,90,.1)}
+.hero-stats{display:flex;flex-wrap:wrap;gap:clamp(18px,3vw,40px);margin-top:26px;font-family:var(--font-sans)}
+.hero-stats div{line-height:1.3}
+.hero-stats b{display:block;font-family:var(--font);font-size:22px;color:var(--brand)}
+.hero-stats span{font-size:12px;color:var(--ink-3);letter-spacing:.04em}
+
+/* 首屏原创视觉：胶片盘 + 年份刻度 */
+.hero-art{position:relative;justify-self:center;width:min(100%,400px);aspect-ratio:1/1}
+.hero-art svg{width:100%;height:100%}
+.hero-art .cap{
+  position:absolute;left:6%;bottom:2%;font-family:var(--font-sans);font-size:11px;
+  color:var(--ink-3);letter-spacing:.06em;background:rgba(246,242,233,.85);padding:2px 8px;border-radius:4px;
+}
+
+/* ===== 主区布局 ===== */
+.wrap{max-width:1180px;margin:0 auto;padding:calc(var(--sp) + 10px) var(--sp) 0}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 296px;gap:clamp(20px,3vw,36px);align-items:start}
+.main-col{min-width:0}
+.side-col{position:sticky;top:calc(var(--stick-h) + var(--head-h) + 16px);font-family:var(--font-sans)}
+
+/* 通用板块 */
+.sec{margin-bottom:clamp(34px,5vw,58px)}
+.sec-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:20px}
+.sec-head h2{font-size:clamp(20px,2.6vw,26px);letter-spacing:.01em}
+.sec-head .num{font-family:var(--font-sans);font-size:12px;color:var(--gold);letter-spacing:.16em}
+.sec-head .more{margin-left:auto;font-family:var(--font-sans);font-size:12.5px;color:var(--ink-3);border-bottom:1px dashed var(--line-2);padding-bottom:1px}
+.sec-head .more:hover{color:var(--accent);border-color:var(--accent)}
+.tag{display:inline-block;font-family:var(--font-sans);font-size:11px;letter-spacing:.04em;padding:2px 8px;border-radius:20px;background:var(--bg-soft);color:var(--ink-2);border:1px solid var(--line)}
+
+/* 领域概览：四格定义 */
+.overview{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.ov-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 17px;box-shadow:var(--shadow)}
+.ov-card h3{font-size:15.5px;margin-bottom:7px;display:flex;align-items:center;gap:8px}
+.ov-card h3::before{content:"";width:7px;height:7px;background:var(--gold);border-radius:2px;flex:none;transform:rotate(45deg)}
+.ov-card p{font-size:13.5px;color:var(--ink-2);line-height:1.75;margin:0}
+
+/* 精选推荐：不对称网格 */
+.picks{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:14px}
+.pick{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+.pick:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift)}
+.pick .img{aspect-ratio:16/9;overflow:hidden;background:var(--bg-soft)}
+.pick .img img{width:100%;height:100%;object-fit:cover}
+.pick .bd{padding:13px 14px 15px}
+.pick.feat{grid-row:span 1}
+.pick.feat .img{aspect-ratio:16/10}
+.pick h3{font-size:15px;line-height:1.5;margin-bottom:6px}
+.pick .meta{font-family:var(--font-sans);font-size:11.5px;color:var(--ink-3);display:flex;gap:8px;flex-wrap:wrap}
+.pick p{font-size:13px;color:var(--ink-2);margin:8px 0 0;line-height:1.7}
+
+/* 最新更新：紧凑列表 */
+.updates{border-top:1px solid var(--line)}
+.up-row{display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:12px 2px;border-bottom:1px solid var(--line);font-size:14px}
+.up-row time{font-family:var(--font-sans);font-size:12px;color:var(--ink-3);letter-spacing:.03em}
+.up-row .t{font-weight:600;color:var(--ink);font-size:14.5px}
+.up-row .t small{display:block;font-weight:400;color:var(--ink-2);font-size:12.5px;margin-top:2px;line-height:1.6}
+.up-row .ver{font-family:var(--font-sans);font-size:11.5px;color:var(--gold);white-space:nowrap}
+
+/* 分类入口：标签索引 */
+.cats{display:flex;flex-wrap:wrap;gap:9px}
+.cats a{
+  font-family:var(--font-sans);font-size:13px;padding:7px 14px;border-radius:var(--radius-s);
+  border:1px solid var(--line-2);background:var(--card);color:var(--ink-2);
+  transition:all .18s;display:inline-flex;align-items:center;gap:7px;
+}
+.cats a em{font-style:normal;font-size:11px;color:var(--ink-3)}
+.cats a:hover{border-color:var(--gold);background:rgba(224,178,90,.14);color:var(--ink);transform:translateY(-2px)}
+
+/* 深度解析：分栏正文 */
+.deep{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(18px,3vw,30px);box-shadow:var(--shadow)}
+.deep > .dh{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.deep h2{font-size:clamp(20px,2.6vw,25px)}
+.deep h3{font-size:16.5px;margin:26px 0 9px;padding-left:11px;border-left:3px solid var(--gold);line-height:1.5}
+.deep h3:first-of-type{margin-top:8px}
+.deep p{font-size:15px;color:var(--ink-2);line-height:1.95}
+.deep .split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,34px)}
+.deep .split > div{min-width:0}
+.deep blockquote{
+  margin:18px 0;padding:13px 17px;background:var(--bg-soft);border-left:3px solid var(--accent);
+  border-radius:0 var(--radius-s) var(--radius-s) 0;font-size:14px;color:var(--ink-2);
+}
+.deep blockquote b{color:var(--ink)}
+/* 拆判断：可核对结构 */
+.checklist{border:1px solid var(--line-2);border-radius:var(--radius);overflow:hidden;margin:18px 0;font-family:var(--font-sans)}
+.checklist .ch{background:var(--brand);color:#efe6d3;font-size:12.5px;padding:8px 14px;letter-spacing:.06em}
+.checklist .cr{display:grid;grid-template-columns:96px minmax(0,1fr) 88px;gap:10px;padding:9px 14px;font-size:12.5px;border-top:1px solid var(--line);color:var(--ink-2);align-items:baseline}
+.checklist .cr .k{color:var(--ink);font-weight:600}
+.checklist .cr .s{white-space:nowrap;font-weight:600}
+.s-yes{color:#3f7d4a}
+.s-part{color:var(--gold)}
+.s-no{color:var(--accent)}
+
+/* 体验指南：编号步骤 */
+.steps{counter-reset:st;display:grid;gap:12px}
+.step{
+  counter-increment:st;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:14px 16px 14px 54px;position:relative;box-shadow:var(--shadow);
+}
+.step::before{
+  content:counter(st,decimal-leading-zero);position:absolute;left:15px;top:14px;
+  font-family:var(--font-sans);font-size:13px;font-weight:700;color:#fffdf7;background:var(--brand);
+  width:25px;height:25px;display:grid;place-items:center;border-radius:50%;
+}
+.step h3{font-size:15px;margin-bottom:5px}
+.step p{font-size:13.5px;color:var(--ink-2);margin:0;line-height:1.78}
+.step p code{font-family:var(--font-sans);font-size:12.5px;background:var(--bg-soft);padding:1px 5px;border-radius:3px}
+
+/* 对照面板 */
+.compare{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line-2);border-radius:var(--radius);overflow:hidden;font-size:13.5px}
+.compare .col{padding:14px 16px;background:var(--card)}
+.compare .col + .col{border-left:1px solid var(--line-2)}
+.compare h3{font-size:14.5px;margin-bottom:8px;display:flex;align-items:center;gap:7px}
+.compare h3 .dot{width:8px;height:8px;border-radius:50%;flex:none}
+.compare ul li{padding:5px 0;border-bottom:1px dashed var(--line);color:var(--ink-2);line-height:1.7}
+.compare ul li:last-child{border-bottom:none}
+.compare ul li b{color:var(--ink)}
+
+/* FAQ */
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{
+  cursor:pointer;list-style:none;padding:13px 30px 13px 2px;position:relative;
+  font-size:15px;font-weight:600;color:var(--ink);transition:color .18s;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"+";position:absolute;right:4px;top:50%;transform:translateY(-50%);
+  font-family:var(--font-sans);font-size:19px;color:var(--gold);font-weight:400;transition:transform .2s;
+}
+.faq details[open] summary{color:var(--accent)}
+.faq details[open] summary::after{content:"−";transform:translateY(-50%)}
+.faq summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.faq .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-2);line-height:1.9}
+
+/* 评论 */
+.comments{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.cm{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;box-shadow:var(--shadow)}
+.cm .who{display:flex;align-items:center;gap:8px;font-family:var(--font-sans);font-size:12px;color:var(--ink-3);margin-bottom:7px}
+.cm .av{width:24px;height:24px;border-radius:50%;background:var(--gold-soft);display:grid;place-items:center;color:#5a4318;font-weight:700;font-size:11px;flex:none}
+.cm .who b{color:var(--ink);font-weight:600}
+.cm p{font-size:13.5px;color:var(--ink-2);margin:0 0 8px;line-height:1.78}
+.cm .ref{font-family:var(--font-sans);font-size:11.5px;color:var(--accent);border-bottom:1px dashed var(--accent);padding-bottom:1px}
+.cm .ref:hover{color:var(--brand)}
+
+/* 时间线 */
+.timeline{position:relative;padding-left:20px}
+.timeline::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:var(--line-2)}
+.tl{position:relative;padding:0 0 18px 4px}
+.tl::before{content:"";position:absolute;left:-20px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--card);border:2px solid var(--gold)}
+.tl time{font-family:var(--font-sans);font-size:11.5px;color:var(--gold);letter-spacing:.04em;display:block;margin-bottom:3px}
+.tl h3{font-size:14.5px;margin-bottom:3px}
+.tl p{font-size:13px;color:var(--ink-2);margin:0;line-height:1.72}
+
+/* 相关资讯 */
+.news{display:grid;gap:10px}
+.nw{display:flex;gap:13px;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);transition:border-color .18s,transform .18s}
+.nw:hover{border-color:var(--gold);transform:translateX(3px)}
+.nw .cat{font-family:var(--font-sans);font-size:11px;color:var(--gold);border:1px solid rgba(184,137,47,.45);border-radius:4px;padding:1px 6px;height:fit-content;white-space:nowrap;flex:none;margin-top:3px}
+.nw .bd{min-width:0}
+.nw h3{font-size:14.5px;margin-bottom:3px;line-height:1.55}
+.nw p{font-size:12.5px;color:var(--ink-3);margin:0;line-height:1.65;font-family:var(--font-sans)}
+
+/* 相关推荐标签 */
+.recs{display:flex;flex-wrap:wrap;gap:8px}
+.recs a{
+  font-family:var(--font-sans);font-size:12.5px;padding:6px 12px;border-radius:20px;
+  background:var(--card);border:1px solid var(--line-2);color:var(--ink-2);transition:all .18s;
+}
+.recs a::before{content:"#";color:var(--gold);margin-right:3px}
+.recs a:hover{background:var(--brand);color:#f6f2e9;border-color:var(--brand)}
+
+/* 榜单 */
+.rank{border:1px solid var(--line-2);border-radius:var(--radius);overflow:hidden;background:var(--card)}
+.rk{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:12px;align-items:center;padding:11px 15px;border-bottom:1px solid var(--line)}
+.rk:last-child{border-bottom:none}
+.rk .no{font-family:var(--font-sans);font-weight:700;font-size:15px;color:var(--line-2);text-align:center}
+.rk:nth-child(1) .no{color:var(--accent)}
+.rk:nth-child(2) .no{color:var(--gold)}
+.rk:nth-child(3) .no{color:var(--ink-2)}
+.rk h3{font-size:14.5px;margin:0 0 1px}
+.rk p{font-size:12px;color:var(--ink-3);margin:0;font-family:var(--font-sans)}
+.rk .sc{font-family:var(--font-sans);font-size:12px;color:var(--ink-2);white-space:nowrap}
+.rk .sc b{color:var(--accent);font-size:14px}
+
+/* 侧栏 */
+.side-box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:15px 16px;margin-bottom:16px;box-shadow:var(--shadow)}
+.side-box h2,.side-box h3{font-size:14px;font-family:var(--font);margin-bottom:11px;display:flex;align-items:center;gap:7px;letter-spacing:.02em}
+.side-box h3::before{content:"";width:3px;height:14px;background:var(--gold);border-radius:2px}
+.side-nav a{display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:var(--radius-s);font-size:13px;color:var(--ink-2);border-left:2px solid transparent;transition:all .16s}
+.side-nav a::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--line-2);flex:none;transition:background .16s}
+.side-nav a:hover{background:var(--bg-soft);color:var(--ink)}
+.side-nav a.active{background:rgba(224,178,90,.16);color:var(--brand);border-left-color:var(--gold);font-weight:600}
+.side-nav a.active::before{background:var(--gold)}
+.side-list li{padding:8px 0;border-bottom:1px dashed var(--line);font-size:12.5px;line-height:1.65;color:var(--ink-2)}
+.side-list li:last-child{border-bottom:none}
+.side-list li time{display:block;font-size:11px;color:var(--ink-3);margin-bottom:2px}
+.side-list li b{color:var(--ink);font-weight:600}
+.side-note{font-size:12.5px;color:var(--ink-3);line-height:1.75;background:var(--bg-soft);border:1px dashed var(--line-2);border-radius:var(--radius-s);padding:11px 12px}
+.side-note b{color:var(--ink-2)}
+
+/* 页尾 */
+.foot{background:var(--brand);color:#d9cdb6;margin-top:clamp(30px,5vw,54px);font-family:var(--font-sans);font-size:13px}
+.foot-in{max-width:1180px;margin:0 auto;padding:clamp(28px,4vw,46px) var(--sp) 0;display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:clamp(18px,3vw,34px)}
+.foot .fbrand{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.foot .fbrand svg{width:30px;height:30px}
+.foot .fbrand b{color:#f6f2e9;font-family:var(--font);font-size:16px}
+.foot .fdesc{font-size:12.5px;line-height:1.8;color:#b8ab93;max-width:26em}
+.foot h3{color:#f0e6d2;font-size:13px;font-family:var(--font);margin-bottom:10px;letter-spacing:.04em}
+.foot ul li{padding:3px 0;color:#b8ab93;font-size:12.5px}
+.foot ul li a:hover{color:var(--gold-soft)}
+.foot .sample{margin-top:14px;font-size:11.5px;color:#9a8e78;line-height:1.7;border-top:1px solid #4a3f30;padding-top:10px}
+.foot-bar{max-width:1180px;margin:0 auto;padding:16px var(--sp) 22px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;font-size:11.5px;color:#9a8e78;border-top:1px solid #4a3f30;margin-top:clamp(20px,3vw,32px)}
+.foot-bar a{color:#b8ab93}
+.foot-bar a:hover{color:var(--gold-soft)}
+
+/* 回到顶部 */
+.totop{
+  position:fixed;right:18px;bottom:22px;width:42px;height:42px;border-radius:50%;
+  background:var(--brand);color:#f0e6d2;border:1px solid #4a3f30;display:grid;place-items:center;
+  cursor:pointer;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .25s,transform .25s;
+  z-index:55;box-shadow:var(--shadow-lift);
+}
+.totop.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+.totop:focus-visible{outline:2px solid var(--gold-soft);outline-offset:2px}
+
+/* ===== 响应式 ===== */
+@media (max-width:1000px){
+  .hero-in{grid-template-columns:1fr;gap:26px}
+  .hero-art{order:-1;width:min(100%,300px);justify-self:start}
+  .layout{grid-template-columns:1fr}
+  .side-col{position:static;order:2;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .side-col .side-box{margin-bottom:0}
+  .picks{grid-template-columns:1fr 1fr}
+  .picks .pick.feat{grid-column:span 2}
+  .overview{grid-template-columns:1fr 1fr}
+  .comments{grid-template-columns:1fr 1fr}
+  .foot-in{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .head-nav{
+    display:none;position:absolute;left:0;right:0;top:100%;background:var(--card);
+    border-bottom:1px solid var(--line);padding:8px var(--sp);flex-direction:column;gap:2px;
+    box-shadow:var(--shadow-lift);
+  }
+  .head-nav.open{display:flex}
+  .head-nav a{padding:10px 12px;font-size:14px}
+  .site-head{position:relative}
+  .menu-btn{display:inline-flex}
+  .search input{width:120px}
+  .entry-btn{display:none}
+  .up-row{grid-template-columns:64px minmax(0,1fr);gap:10px}
+  .up-row .ver{grid-column:2;justify-self:start}
+  .deep .split{grid-template-columns:1fr}
+  .compare{grid-template-columns:1fr}
+  .compare .col + .col{border-left:none;border-top:1px solid var(--line-2)}
+  .comments{grid-template-columns:1fr}
+  .checklist .cr{grid-template-columns:80px minmax(0,1fr);font-size:12px}
+  .checklist .cr .s{grid-column:2;justify-self:start}
+  .side-col{grid-template-columns:1fr}
+  .foot-in{grid-template-columns:1fr 1fr;gap:20px}
+  .hero-stats{gap:20px}
+  .search-res{width:min(86vw,300px)}
+}
+@media (max-width:520px){
+  .picks{grid-template-columns:1fr}
+  .picks .pick.feat{grid-column:auto}
+  .overview{grid-template-columns:1fr}
+  .hero-stats b{font-size:19px}
+  .foot-in{grid-template-columns:1fr}
+  .search input{width:104px}
+  .brand .bt{font-size:15.5px}
+  .notice .sep{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  .pick:hover,.btn:hover,.cats a:hover,.nw:hover{transform:none}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<div class="stick-wrap">
+  <div class="notice" role="region" aria-label="更新公告">
+    <b>片库动态</b>
+    <span class="sep" aria-hidden="true"></span>
+    <div class="roll"><span>11月6日新增《七十二家房客》1973粤语修复版比对条目，含两条不同片长记录</span></div>
+  </div>
+  <header class="site-head">
+    <a class="brand" href="/#overview" aria-label="黄页仓库在线观看 首页">
+      <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+        <rect width="64" height="64" rx="12" fill="#2b241c"/>
+        <path d="M14 20h36v8H14z" fill="#e0b25a"/>
+        <path d="M14 34h22v8H14z" fill="#a8956e"/>
+        <circle cx="46" cy="38" r="7" fill="#c9553d"/>
+        <circle cx="46" cy="38" r="2.4" fill="#2b241c"/>
+      </svg>
+      <span class="bt">黄页仓库在线观看<small>OLD FILM INDEX</small></span>
+    </a>
+    <nav class="head-nav" id="headNav" aria-label="主导航">
+      <a href="/#overview" class="on">片库概况</a>
+      <a href="/#picks">本周精选</a>
+      <a href="/#updates">新进条目</a>
+      <a href="/#cats">分类索引</a>
+      <a href="/#deep">版本考据</a>
+      <a href="/#guide">查片指南</a>
+      <a href="/#faq">常见问答</a>
+    </nav>
+    <div class="head-tools">
+      <div class="search">
+        <input type="search" id="q" placeholder="搜片名、年份、导演…" aria-label="站内查找" autocomplete="off">
+        <span class="ic" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.6" stroke="currentColor" stroke-width="1.6"/><path d="M10.6 10.6L14 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </span>
+        <div class="search-res" id="sres" role="listbox" aria-label="查找结果"></div>
+      </div>
+      <button class="entry-btn" type="button" data-jump="guide">查片路径</button>
+      <button class="menu-btn" type="button" id="menuBtn" aria-expanded="false" aria-controls="headNav" aria-label="展开导航菜单">
+        <svg width="17" height="17" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 4.5h14M2 9h14M2 13.5h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </header>
+</div>
+
+<!-- 首屏 -->
+<section class="hero" aria-labelledby="heroTitle">
+  <div class="hero-in">
+    <div>
+      <span class="hero-kicker">1962—1998 · 港台与内地旧片索引</span>
+      <h1 id="heroTitle">黄页仓库在线观看</h1>
+      <p class="lead">把散落在录像带、电视播出版、胶片拷贝里的旧片，按片名、年份、修复批次重新登记。每条记录标出片长、画幅、音轨来源和目前能查到的放映渠道，方便先对版本，再决定看哪一版。</p>
+      <div class="hero-acts">
+        <a class="btn btn-p" href="/#updates">看本周进库条目</a>
+        <a class="btn btn-s" href="/#deep">读版本考据笔记</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>4,286</b><span>已登记片目</span></div>
+        <div><b>317</b><span>修复批次</span></div>
+        <div><b>62</b><span>片源渠道</span></div>
+        <div><b>36</b><span>本周更新</span></div>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 400 400" role="presentation">
+        <defs>
+          <radialGradient id="disc" cx="50%" cy="42%" r="62%">
+            <stop offset="0%" stop-color="#3a3126"/>
+            <stop offset="100%" stop-color="#241f18"/>
+          </radialGradient>
+        </defs>
+        <circle cx="200" cy="200" r="168" fill="none" stroke="#c4b79c" stroke-width="1" stroke-dasharray="2 7"/>
+        <circle cx="200" cy="200" r="150" fill="url(#disc)"/>
+        <g fill="none" stroke="#5c5140" stroke-width="1">
+          <circle cx="200" cy="200" r="138"/>
+          <circle cx="200" cy="200" r="120"/>
+          <circle cx="200" cy="200" r="102"/>
+          <circle cx="200" cy="200" r="84"/>
+        </g>
+        <circle cx="200" cy="200" r="58" fill="#efe8da"/>
+        <circle cx="200" cy="200" r="58" fill="none" stroke="#b8892f" stroke-width="1.5"/>
+        <circle cx="200" cy="200" r="13" fill="#2b241c"/>
+        <circle cx="200" cy="200" r="5" fill="#e0b25a"/>
+        <g stroke="#e0b25a" stroke-width="2" stroke-linecap="round">
+          <line x1="200" y1="52" x2="200" y2="68"/>
+          <line x1="200" y1="332" x2="200" y2="348"/>
+          <line x1="52" y1="200" x2="68" y2="200"/>
+          <line x1="332" y1="200" x2="348" y2="200"/>
+        </g>
+        <g fill="#d9cdb6" font-family="Georgia,serif" font-size="12" text-anchor="middle">
+          <text x="200" y="44">1962</text>
+          <text x="200" y="364">1998</text>
+          <text x="36" y="204">16mm</text>
+          <text x="364" y="204">35mm</text>
+        </g>
+        <path d="M92 138a150 150 0 0 1 96-58" fill="none" stroke="#c9553d" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="188" cy="80" r="4.5" fill="#c9553d"/>
+        <text x="200" y="240" fill="#2b241c" font-family="Georgia,serif" font-size="15" text-anchor="middle" letter-spacing="2">REEL INDEX</text>
+      </svg>
+      <span class="cap">按胶片规格与年份十字定位</span>
+    </div>
+  </div>
+</section>
+
+<!-- 主内容 -->
+<div class="wrap">
+  <div class="layout">
+    <main class="main-col">
+
+      <!-- 1 领域概览 -->
+      <section class="sec" id="overview" aria-labelledby="ovTitle">
+        <div class="sec-head">
+          <span class="num">01</span>
+          <h2 id="ovTitle">片库概况：收什么，怎么登记</h2>
+        </div>
+        <div class="overview">
+          <div class="ov-card">
+            <h3>收录范围</h3>
+            <p>1949—1999 年出品、且存在录像带、LD、电视播出版或修复版流通的剧情长片与戏曲片。短片、纪录片、电视剧单集暂不入主表，另设附册。</p>
+          </div>
+          <div class="ov-card">
+            <h3>一条记录含什么</h3>
+            <p>片名（含别名）、出品年份、片长三档（原长／现存／修复后）、画幅、音轨来源、字幕语种、已核实的放映渠道与查阅出处。</p>
+          </div>
+          <div class="ov-card">
+            <h3>版本判断依据</h3>
+            <p>以片头厂标、检片尺码、片尾字幕顺序和配乐接点四处为硬证据；口述回忆、节目单、旧报刊广告只作旁证，单独标注层级。</p>
+          </div>
+          <div class="ov-card">
+            <h3>渠道标注规则</h3>
+            <p>渠道按可核实程度分三级：已确认上架、资料馆预约放映、仅有实体拷贝存档。三级之间不做合并，避免把存档写成可看。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 精选推荐 -->
+      <section class="sec" id="picks" aria-labelledby="pkTitle">
+        <div class="sec-head">
+          <span class="num">02</span>
+          <h2 id="pkTitle">本周精选片目</h2>
+          <a class="more" href="/#updates">按进库日期排序 →</a>
+        </div>
+        <div class="picks">
+          <article class="pick feat">
+            <div class="img"><img src="https://picsum.photos/seed/huangye-reel-01/720/450" width="720" height="450" loading="lazy" alt="修复版旧片片头厂标定格画面"></div>
+            <div class="bd">
+              <h3>《七十二家房客》1973 粤语版：两条片长记录并存</h3>
+              <p>现存拷贝标注 98 分钟，电视播出版为 91 分钟，差额集中在开场的房东收租一段。两条记录并列保留，暂不合并。</p>
+              <div class="meta"><span class="tag">粤语长片</span><span>1973</span><span>邵氏片库</span></div>
+            </div>
+          </article>
+          <article class="pick">
+            <div class="img"><img src="https://picsum.photos/seed/huangye-reel-02/480/270" width="480" height="270" loading="lazy" alt="戏曲片字幕与唱段画面"></div>
+            <div class="bd">
+              <h3>《梁山伯与祝英台》1963 越剧彩色版</h3>
+              <p>彩色底片褪色严重，2025 年修复批次以黄片分离法还原，红绿两层色彩仍偏暖。</p>
+              <div class="meta"><span>1963</span><span>戏曲片</span></div>
+            </div>
+          </article>
+          <article class="pick">
+            <div class="img"><img src="https://picsum.photos/seed/huangye-reel-03/480/270" width="480" height="270" loading="lazy" alt="黑白粤语片上字特写"></div>
+            <div class="bd">
+              <h3>《可怜天下父母心》1960 黑白版</h3>
+              <p>中英文字幕上下分排，英文由片方自行译制，用词与今日通行译名有出入，已附对照表。</p>
+              <div class="meta"><span>1960</span><span>黑白剧情</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 3 最新更新 -->
+      <section class="sec" id="updates" aria-labelledby="upTitle">
+        <div class="sec-head">
+          <span class="num">03</span>
+          <h2 id="upTitle">新进条目与修订</h2>
+        </div>
+        <ul class="updates">
+          <li class="up-row">
+            <time datetime="2026-11-07">11月7日</time>
+            <span class="t">《七十二家房客》新增第二条片长记录<small>补入 1979 年重映版节目单，片长 94 分钟，含一段加映的街头小调</small></span>
+            <span class="ver">记录 v3</span>
+          </li>
+          <li class="up-row">
+            <time datetime="2026-11-06">11月6日</time>
+            <span class="t">《神女》默片配乐版本拆分<small>原有 1990 年配乐与 2014 年新配乐两条音轨分开登记，不再混为一条</small></span>
+            <span class="ver">记录 v2</span>
+          </li>
+          <li class="up-row">
+            <time datetime="2026-11-05">11月5日</time>
+            <span class="t">戏曲片分类下新增“粤剧电影”子目<small>首批收入 7 部 1955—1968 年粤剧片，均标注舞台记录片属性</small></span>
+            <span class="ver">分类调整</span>
+          </li>
+          <li class="up-row">
+            <time datetime="2026-11-03">11月3日</time>
+            <span class="t">《小城之春》画幅标注由 1.33 更正为 1.37<small>依据 1948 年发行拷贝片门实测，此前沿用了另一批素材的比例</small></span>
+            <span class="ver">记录 v4</span>
+          </li>
+          <li class="up-row">
+            <time datetime="2026-11-01">11月1日</time>
+            <span class="t">渠道核实：三条资料馆预约放映记录到期<small>相应条目由“预约放映”降为“实体拷贝存档”，并注明最近一次放映日期</small></span>
+            <span class="ver">渠道核查</span>
+          </li>
+          <li class="up-row">
+            <time datetime="2026-10-28">10月28日</time>
+            <span class="t">《渔光曲》修复批次编号并入总表<small>2024 年批次与 2025 年补修批次合并为同一修复谱系，保留两次作业日期</small></span>
+            <span class="ver">记录 v2</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 4 分类入口 -->
+      <section class="sec" id="cats" aria-labelledby="ctTitle">
+        <div class="sec-head">
+          <span class="num">04</span>
+          <h2 id="ctTitle">按类别找片</h2>
+        </div>
+        <div class="cats">
+          <a href="/#picks">粤语长片 <em>412</em></a>
+          <a href="/#picks">国语旧片 <em>689</em></a>
+          <a href="/#picks">戏曲电影 <em>156</em></a>
+          <a href="/#picks">武侠片 <em>203</em></a>
+          <a href="/#picks">黑白剧情片 <em>574</em></a>
+          <a href="/#picks">彩色修复版 <em>221</em></a>
+          <a href="/#picks">默片配乐版 <em>48</em></a>
+          <a href="/#picks">儿童片 <em>63</em></a>
+          <a href="/#picks">纪录片附册 <em>27</em></a>
+          <a href="/#picks">电视播出版 <em>318</em></a>
+          <a href="/#picks">录像带转录 <em>265</em></a>
+          <a href="/#picks">LD 光盘版 <em>94</em></a>
+        </div>
+      </section>
+
+      <!-- 5 深度解析：主体阅读区 -->
+      <section class="sec" id="deep" aria-labelledby="dpTitle">
+        <div class="deep">
+          <div class="dh">
+            <span class="num" style="font-family:var(--font-sans);font-size:12px;color:var(--gold);letter-spacing:.16em">05</span>
+            <h2 id="dpTitle">版本考据：修复版一定比旧版更接近原貌吗</h2>
+            <span class="tag">全页唯一长读</span>
+          </div>
+          <p>先给判断：修复版不等于更接近原貌。修复解决的是“还能不能看”，原貌解决的是“当年观众看到什么”，两件事常被混成一件。下面用三条可核对的记录说明。</p>
+
+          <h3>案例一：1959 年一部国语片的两条音轨</h3>
+          <p>片库记录 v4 里，《春风秋雨》1959 年国语版有两条音轨。A 轨来自 1980 年代录像带转录，对白清晰，但背景音被压得很薄；B 轨来自 2019 年修复，音乐层次完整，却把两处对白换成了后期补录。修复报告写明补录原因是原声磁片有 11 秒霉斑。也就是说，B 轨更“好听”，A 轨更“原声”。</p>
+          <blockquote>可引用的判断：<b>音轨修复的完成度与原始声音的保真度，在部分条目里是反向关系。</b>观众若想听当年配音，应看 A 轨；若想听完整配乐，选 B 轨。</blockquote>
+
+          <h3>案例二：片长差额出现在哪一段</h3>
+          <p>《七十二家房客》1973 粤语版现存两条片长，98 分钟与 91 分钟，差额 7 分钟集中在开场收租一段。1979 年重映版节目单又记 94 分钟，多出一段街头小调。三个数字不是互相矛盾，而是三个不同的放映场合：首轮、电视播映、重映。片库里并列保留，不做“取最长”处理。若只标一个数字，等于抹掉两次放映史。</p>
+
+          <h3>案例三：画幅更正带来的连锁修改</h3>
+          <p>《小城之春》画幅从 1.33 更正为 1.37 之后，已有 23 条引用旧比例的笔记需要复核。更正依据是 1948 年发行拷贝的片门实测，而非目测。这里要区分的三层是：<b>事实</b>（片门实测 1.37）、<b>回应</b>（修复方称此前素材来自另一批拷贝）、<b>推测</b>（旧比例可能源自 1980 年代转录设备设置）。三层在条目里分栏标注，不合并成一句结论。</p>
+
+          <div class="checklist" aria-label="判断拆解核对表">
+            <div class="ch">“修复版更接近原貌”拆成可核对项</div>
+            <div class="cr"><span class="k">片头厂标</span><span>修复版是否保留原始厂标，有无替换为修复机构标识</span><span class="s s-yes">可核对</span></div>
+            <div class="cr"><span class="k">片长</span><span>三档数字是否都有出处，差额段落是否标明</span><span class="s s-yes">可核对</span></div>
+            <div class="cr"><span class="k">音轨</span><span>是否补录对白，补录段落有无清单</span><span class="s s-part">部分可核对</span></div>
+            <div class="cr"><span class="k">色彩</span><span>褪色底片的还原目标色，有无参考拷贝</span><span class="s s-no">难核对</span></div>
+            <div class="cr"><span class="k">放映史</span><span>首轮、重映、电视播出版本是否分开登记</span><span class="s s-yes">可核对</span></div>
+          </div>
+
+          <div class="split">
+            <div>
+              <h3>反方意见值得听的部分</h3>
+              <p>有修复工作者在 2026 年 10 月的行业座谈中提出：底片随时间收缩，逐帧扫描后再按原始片门比例输出，本身就会改变构图边缘。按此说法，任何数字修复都带再解释成分。这条意见成立，片库在 9 条记录里加了“构图边缘存疑”标注。</p>
+            </div>
+            <div>
+              <h3>片库目前的做法</h3>
+              <p>不评优劣，只列差异。每条记录把原长、现存、修复后三个数字并列，把音轨来源写成可追的批次号。读者按自己的用途选版本：考据看原始，观看看修复。争议段落标注事实、回应、转述、推测四类，不写“据悉”。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 体验指南 -->
+      <section class="sec" id="guide" aria-labelledby="gdTitle">
+        <div class="sec-head">
+          <span class="num">06</span>
+          <h2 id="gdTitle">查片路径：从片名到可看版本</h2>
+        </div>
+        <ol class="steps">
+          <li class="step">
+            <h3>先定片名与别名</h3>
+            <p>旧片常一片多名，港版、台版、内地版译名不同。先用原名查，再查别名。片库里《渔光曲》别名栏收了 2 个，查不到时换别名再搜一次。</p>
+          </li>
+          <li class="step">
+            <h3>确认年份与出品方</h3>
+            <p>同名片在不同年份可能各有版本。用出品公司与厂标双重确认，例如 1963 年越剧《梁山伯与祝英台》与 1953 年同名戏曲片不是同一部。</p>
+          </li>
+          <li class="step">
+            <h3>对片长三档数字</h3>
+            <p>看原长、现存、修复后三个数字是否一致。差 5 分钟以上，查差额段落说明；差 10 分钟以上，基本可判断是两个放映场合的版本。</p>
+          </li>
+          <li class="step">
+            <h3>查音轨与字幕来源</h3>
+            <p>音轨看批次号与是否补录，字幕看语种与译制方。中英分排的老字幕往往由片方自译，用词与今日通行译名不同，别当成错译。</p>
+          </li>
+          <li class="step">
+            <h3>按渠道三级决定路线</h3>
+            <p>已确认上架可直接看；资料馆预约放映要查排期；仅有实体拷贝存档的条目，只能看条目信息，不能观看。三级不混写，避免空跑。</p>
+          </li>
+        </ol>
+
+        <div class="compare" style="margin-top:16px">
+          <div class="col">
+            <h3><span class="dot" style="background:var(--gold)"></span>修复版适合什么用途</h3>
+            <ul>
+              <li><b>完整配乐</b>：音乐层次多来自重新混录，听感更完整</li>
+              <li><b>初次观看</b>：画面稳定，字幕现代，门槛低</li>
+              <li><b>截图引用</b>：分辨率高，但色彩是还原目标色，非原色</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h3><span class="dot" style="background:var(--accent)"></span>旧版素材适合什么用途</h3>
+            <ul>
+              <li><b>原始配音</b>：录像带转录常保留当年对白与音效</li>
+              <li><b>放映史考据</b>：片长、厂标、字幕顺序是硬证据</li>
+              <li><b>色彩参考</b>：褪色本身可反推底片保存状况</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7 FAQ -->
+      <section class="sec" id="faq" aria-labelledby="fqTitle">
+        <div class="sec-head">
+          <span class="num">07</span>
+          <h2 id="fqTitle">常见问答</h2>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>同一部片为什么登记了三个片长？</summary>
+            <div class="ans">三个数字分别对应首轮放映、电视播映和修复后版本。旧片在流转中常被剪去片段或加映内容，片库把每个数字的出处单独写明，而不是取最长的一个当唯一答案。查片时先看差额段落，再决定以哪一版为准。</div>
+          </details>
+          <details>
+            <summary>标了“实体拷贝存档”的条目能在线看吗？</summary>
+            <div class="ans">不能。这一类表示片库只确认了拷贝存在与存放机构，没有可观看的数字化渠道。条目页会写最近一次公开放映的日期和场合，若想观看，只能等资料馆排片。已确认上架的条目会单独标注，两类别混看容易空跑。</div>
+          </details>
+          <details>
+            <summary>默片配乐版为什么有两条音轨记录？</summary>
+            <div class="ans">默片原始无音轨，配乐是后来加的。《神女》现有 1990 年配乐与 2014 年新配乐两条，节奏和情绪处理不同。片库把两条分开登记，各标配乐者与录制年份，不合并成“配乐版”一个笼统标签。</div>
+          </details>
+          <details>
+            <summary>中英文字幕上下分排，是修复时加的吗？</summary>
+            <div class="ans">多数不是。1960 年代前后的港产片常由片方自行译制英文字幕，直接印在拷贝上，上下分排是那个时期的技术习惯。修复时通常保留原字幕层，另加现代字幕轨。看片时可切换字幕轨对照，原字幕层的用词差异本身就是考据材料。</div>
+          </details>
+          <details>
+            <summary>画幅比例更正后，以前的笔记还有效吗？</summary>
+            <div class="ans">构图相关的结论要复核，剧情、人物、台词的分析不受影响。《小城之春》从 1.33 更正为 1.37 后，有 23 条引用旧比例的笔记进了复核队列。片库在更正记录里列出受影响条目编号，读者可自行比对。</div>
+          </details>
+          <details>
+            <summary>戏曲电影和舞台记录片怎么区分？</summary>
+            <div class="ans">看机位与剪辑。戏曲电影按电影分镜拍摄，有特写、反打和外景；舞台记录片以固定机位为主，保留完整场次与幕间。片库在戏曲片子目下标注“电影化程度”三档：高、中、记录式，便于按用途挑选。</div>
+          </details>
+        </div>
+      </section>
+
+      <!-- 8 用户评论 -->
+      <section class="sec" id="comments" aria-labelledby="cmTitle">
+        <div class="sec-head">
+          <span class="num">08</span>
+          <h2 id="cmTitle">观众与查片者的留言</h2>
+        </div>
+        <div class="comments">
+          <article class="cm">
+            <div class="who"><span class="av">林</span><b>林砚秋</b><span>· 11月6日</span></div>
+            <p>《七十二家房客》那 7 分钟差额，我按条目里写的段落去对，果然在收租一场。旧录像带版本的背景笑声比修复版密，修复版像是把那层观众反应压掉了。这个差异比片长更影响观感。</p>
+            <a class="ref" href="/#picks">《七十二家房客》1973 粤语版</a>
+          </article>
+          <article class="cm">
+            <div class="who"><span class="av">周</span><b>周慕云</b><span>· 11月5日</span></div>
+            <p>查《神女》的时候两条配乐记录把我搞晕了。1990 年那版钢琴声太满，2014 年版留白多。条目分开登记是对的，但页面上要是能直接试听 30 秒就好了，光看文字还是难选。</p>
+            <a class="ref" href="/#updates">《神女》默片配乐版本拆分</a>
+          </article>
+          <article class="cm">
+            <div class="who"><span class="av">何</span><b>何小满</b><span>· 11月4日</span></div>
+            <p>说实话有点失望。搜了三部想看的粤剧片，全是“实体拷贝存档”，一个能看的渠道都没有。条目信息写得挺细，但对我这种只想看片的人，用处有限。</p>
+            <a class="ref" href="/#cats">戏曲电影子目</a>
+          </article>
+          <article class="cm">
+            <div class="who"><span class="av">陈</span><b>陈启明</b><span>· 11月3日</span></div>
+            <p>画幅从 1.33 更正到 1.37 这件事，我手上有 1980 年代的录像带，画面左右确实多出一点。旧比例很可能是转录设备裁的，这跟条目里的推测对得上。复核队列这个做法值得保留。</p>
+            <a class="ref" href="/#deep">《小城之春》画幅更正</a>
+          </article>
+          <article class="cm">
+            <div class="who"><span class="av">吴</span><b>吴阿棠</b><span>· 11月2日</span></div>
+            <p>《梁山伯与祝英台》1963 彩色版的红色偏橙，修复报告说红绿两层都偏暖，我认。不过比起色偏，更难受的是有两处唱段接点被剪了半拍，听上去像卡带。不知道是不是修复时接的。</p>
+            <a class="ref" href="/#picks">《梁山伯与祝英台》越剧彩色版</a>
+          </article>
+          <article class="cm">
+            <div class="who"><span class="av">郑</span><b>郑维安</b><span>· 11月1日</span></div>
+            <p>三级渠道的写法很清楚，至少不会把存档当成能看。建议再加一栏“最近一次公开放映”，这样等排片的人心里有数。现在只有部分条目写了。</p>
+            <a class="ref" href="/#updates">渠道核实：三条预约放映到期</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- 9 相关资讯 -->
+      <section class="sec" id="news" aria-labelledby="nwTitle">
+        <div class="sec-head">
+          <span class="num">09</span>
+          <h2 id="nwTitle">相关资讯与动态</h2>
+        </div>
+        <div class="news">
+          <article class="nw">
+            <span class="cat">修复</span>
+            <div class="bd">
+              <h3>黄片分离法在 1960 年代彩色戏曲片上的两次应用</h3>
+              <p>2026-11-05 · 记录两条修复批次，红绿层还原目标色不同</p>
+            </div>
+          </article>
+          <article class="nw">
+            <span class="cat">排片</span>
+            <div class="bd">
+              <h3>资料馆 11 月旧片放映单：默片配乐场次两场</h3>
+              <p>2026-11-04 · 《神女》2014 配乐版与另一部默片同场，需预约</p>
+            </div>
+          </article>
+          <article class="nw">
+            <span class="cat">考据</span>
+            <div class="bd">
+              <h3>旧片英文字幕译名差异：三处与今日通行译名对照</h3>
+              <p>2026-11-02 · 取自 1960 年黑白剧情片原字幕层</p>
+            </div>
+          </article>
+          <article class="nw">
+            <span class="cat">存疑</span>
+            <div class="bd">
+              <h3>《渔光曲》两次修复批次合并后的谱系标注说明</h3>
+              <p>2026-10-28 · 保留两次作业日期，不合并为单一版本号</p>
+            </div>
+          </article>
+          <article class="nw">
+            <span class="cat">资料</span>
+            <div class="bd">
+              <h3>粤剧电影收录标准：舞台记录片与电影化改编的分界</h3>
+              <p>2026-10-26 · 首批 7 部标注电影化程度三档</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 10 相关推荐 -->
+      <section class="sec" id="recs" aria-labelledby="rcTitle">
+        <div class="sec-head">
+          <span class="num">10</span>
+          <h2 id="rcTitle">相关的查片关键词</h2>
+        </div>
+        <div class="recs">
+          <a href="/#picks">粤语长片修复版对照</a>
+          <a href="/#updates">旧片片长差额说明</a>
+          <a href="/#deep">默片配乐版本比较</a>
+          <a href="/#cats">戏曲电影分类标准</a>
+          <a href="/#guide">黑白片画幅比例更正</a>
+          <a href="/#picks">录像带转录音轨来源</a>
+          <a href="/#faq">LD 光盘版与录像带差异</a>
+          <a href="/#news">资料馆旧片排片查询</a>
+        </div>
+      </section>
+
+      <!-- 11 榜单 -->
+      <section class="sec" id="rank" aria-labelledby="rkTitle">
+        <div class="sec-head">
+          <span class="num">11</span>
+          <h2 id="rkTitle">本月查阅次数榜</h2>
+        </div>
+        <div class="rank">
+          <div class="rk">
+            <span class="no">1</span>
+            <div><h3>《小城之春》1948</h3><p>画幅更正带动 23 条笔记复核</p></div>
+            <span class="sc"><b>1,842</b> 次</span>
+          </div>
+          <div class="rk">
+            <span class="no">2</span>
+            <div><h3>《神女》1934</h3><p>两条配乐记录拆分后查阅上升</p></div>
+            <span class="sc"><b>1,516</b> 次</span>
+          </div>
+          <div class="rk">
+            <span class="no">3</span>
+            <div><h3>《七十二家房客》1973</h3><p>三档片长与重映节目单并列</p></div>
+            <span class="sc"><b>1,377</b> 次</span>
+          </div>
+          <div class="rk">
+            <span class="no">4</span>
+            <div><h3>《渔光曲》1934</h3><p>两次修复批次谱系合并</p></div>
+            <span class="sc"><b>968</b> 次</span>
+          </div>
+          <div class="rk">
+            <span class="no">5</span>
+            <div><h3>《梁山伯与祝英台》1963</h3><p>彩色还原目标色对照</p></div>
+            <span class="sc"><b>884</b> 次</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- 侧栏 -->
+    <aside class="side-col" aria-label="侧栏导航与摘要">
+      <div class="side-box">
+        <h3>栏目导航</h3>
+        <nav class="side-nav" id="sideNav" aria-label="页面栏目">
+          <a href="/#overview">片库概况</a>
+          <a href="/#picks">本周精选片目</a>
+          <a href="/#updates">新进条目与修订</a>
+          <a href="/#cats">按类别找片</a>
+          <a href="/#deep">版本考据</a>
+          <a href="/#guide">查片路径</a>
+          <a href="/#faq">常见问答</a>
+          <a href="/#comments">观众留言</a>
+          <a href="/#news">相关资讯</a>
+          <a href="/#rank">本月查阅榜</a>
+        </nav>
+      </div>
+      <div class="side-box">
+        <h3>本周修订摘要</h3>
+        <ul class="side-list">
+          <li><time datetime="2026-11-07">11月7日</time><b>片长记录</b>：《七十二家房客》增 94 分钟重映版</li>
+          <li><time datetime="2026-11-06">11月6日</time><b>音轨拆分</b>：《神女》两条配乐分列</li>
+          <li><time datetime="2026-11-03">11月3日</time><b>比例更正</b>：《小城之春》改 1.37</li>
+          <li><time datetime="2026-11-01">11月1日</time><b>渠道降级</b>：三条预约放映到期转存档</li>
+        </ul>
+      </div>
+      <div class="side-box">
+        <h3>查阅提示</h3>
+        <p class="side-note"><b>片名带书名号</b>是可点条目；年份后带“版”字表示有多个版本并存。看到“实体拷贝存档”不要当成可在线观看，条目页会写最近一次放映日期。</p>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- 页尾 -->
+<footer class="foot">
+  <div class="foot-in">
+    <div>
+      <div class="fbrand">
+        <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+          <rect width="64" height="64" rx="12" fill="#3c3226"/>
+          <path d="M14 20h36v8H14z" fill="#e0b25a"/>
+          <path d="M14 34h22v8H14z" fill="#a8956e"/>
+          <circle cx="46" cy="38" r="7" fill="#c9553d"/>
+          <circle cx="46" cy="38" r="2.4" fill="#3c3226"/>
+        </svg>
+        <b>黄页仓库在线观看</b>
+      </div>
+      <p class="fdesc">把旧片的片长、画幅、音轨和放映渠道分开登记，供查版本的人逐项核对。</p>
+      <p class="sample">示例数据说明：页面内片目数量、修复批次、查阅次数与留言均为演示用示例条目，非实际统计；片名与年份参考公开资料编写，渠道信息以三级标注区分，请以条目内出处为准。页脚更新时间 2026-11-07，对应“新进条目与修订”中的片长记录。</p>
+    </div>
+    <div>
+      <h3>片库栏目</h3>
+      <ul>
+        <li><a href="/#overview">片库概况</a></li>
+        <li><a href="/#picks">本周精选</a></li>
+        <li><a href="/#updates">新进条目</a></li>
+        <li><a href="/#cats">分类索引</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>查片与考据</h3>
+      <ul>
+        <li><a href="/#deep">版本考据</a></li>
+        <li><a href="/#guide">查片路径</a></li>
+        <li><a href="/#faq">常见问答</a></li>
+        <li><a href="/#rank">查阅榜单</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>互动与动态</h3>
+      <ul>
+        <li><a href="/#comments">观众留言</a></li>
+        <li><a href="/#news">相关资讯</a></li>
+        <li><a href="/#recs">相关关键词</a></li>
+        <li><a href="/#updates">修订记录</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bar">
+    <span>© 2026 黄页仓库在线观看 · 片库索引与版本考据</span>
+    <span>内容以示例数据演示，渠道分级标注，观看前请核对条目出处</span>
+  </div>
+</footer>
+
+<button class="totop" id="totop" type="button" aria-label="回到页面顶部">
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 14V4M4.5 8.5L9 4l4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script>
+(function(){
+  "use strict";
+
+  /* 搜索：本地查找 */
+  var items = [
+    {t:"七十二家房客 1973 粤语版", u:"/#picks", k:"1973 粤语长片 片长 98 91 94"},
+    {t:"梁山伯与祝英台 1963 越剧彩色版", u:"/#picks", k:"1963 戏曲片 彩色修复 黄片分离"},
+    {t:"可怜天下父母心 1960 黑白版", u:"/#picks", k:"1960 黑白剧情 中英字幕"},
+    {t:"小城之春 1948 画幅更正", u:"/#deep", k:"1948 1.33 1.37 片门实测"},
+    {t:"神女 1934 默片配乐版", u:"/#updates", k:"1934 默片 配乐 1990 2014"},
+    {t:"渔光曲 1934 修复批次", u:"/#news", k:"1934 修复 大批次 补修"},
+    {t:"查片路径：从片名到可看版本", u:"/#guide", k:"指南 步骤 查片 渠道"},
+    {t:"渠道三级：上架 预约放映 存档", u:"/#overview", k:"渠道 存档 放映 上架"},
+    {t:"戏曲电影子目", u:"/#cats", k:"戏曲 粤剧 电影化程度 记录片"},
+    {t:"常见问答：片长为何有三个数字", u:"/#faq", k:"FAQ 片长 版本 差额"},
+    {t:"本月查阅次数榜", u:"/#rank", k:"榜单 查阅 1948 1934"},
+    {t:"观众留言与版本讨论", u:"/#comments", k:"评论 留言 观感 音轨"}
+  ];
+  var q = document.getElementById("q");
+  var sres = document.getElementById("sres");
+  if(q && sres){
+    var render = function(){
+      var v = q.value.trim();
+      if(!v){ sres.classList.remove("show"); sres.innerHTML=""; return; }
+      var hit = items.filter(function(it){
+        return (it.t + " " + it.k).toLowerCase().indexOf(v.toLowerCase()) > -1;
+      });
+      if(hit.length){
+        sres.innerHTML = hit.slice(0,7).map(function(it){
+          return '<a href="'+it.u+'" role="option">'+it.t+'</a>';
+        }).join("");
+      }else{
+        sres.innerHTML = '<div class="none">没有找到与“'+v.replace(/[<>&"]/g,"")+'”匹配的条目。可换片名别名、年份或导演名再试。</div>';
+      }
+      sres.classList.add("show");
+    };
+    q.addEventListener("input", render);
+    q.addEventListener("focus", function(){ if(q.value.trim()) render(); });
+    q.addEventListener("keydown", function(e){
+      if(e.key === "Escape"){ sres.classList.remove("show"); q.blur(); }
+    });
+    document.addEventListener("click", function(e){
+      if(!e.target.closest(".search")) sres.classList.remove("show");
+    });
+  }
+
+  /* 移动端菜单 */
+  var menuBtn = document.getElementById("menuBtn");
+  var headNav = document.getElementById("headNav");
+  if(menuBtn && headNav){
+    menuBtn.addEventListener("click", function(){
+      var open = headNav.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    headNav.addEventListener("click", function(e){
+      if(e.target.tagName === "A" && window.matchMedia("(max-width:760px)").matches){
+        headNav.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded","false");
+      }
+    });
+    document.addEventListener("keydown", function(e){
+      if(e.key === "Escape" && headNav.classList.contains("open")){
+        headNav.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded","false");
+        menuBtn.focus();
+      }
+    });
+  }
+
+  /* 按钮跳转 */
+  document.querySelectorAll("[data-jump]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var id = b.getAttribute("data-jump");
+      var el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+    });
+  });
+
+  /* 回到顶部 */
+  var totop = document.getElementById("totop");
+  if(totop){
+    var onScroll = function(){
+      if(window.scrollY > 600) totop.classList.add("show");
+      else totop.classList.remove("show");
+    };
+    window.addEventListener("scroll", onScroll, {passive:true});
+    onScroll();
+    totop.addEventListener("click", function(){
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+  }
+
+  /* 侧栏滚动高亮 */
+  var nav = document.getElementById("sideNav");
+  if(nav){
+    var links = Array.prototype.slice.call(nav.querySelectorAll("a"));
+    var ids = links.map(function(a){ return a.getAttribute("href").split("#")[1]; });
+    var targets = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+    var setActive = function(id){
+      links.forEach(function(a){
+        a.classList.toggle("active", a.getAttribute("href") === "/#"+id);
+      });
+    };
+    if("IntersectionObserver" in window){
+      var io = new IntersectionObserver(function(entries){
+        var best = null;
+        entries.forEach(function(en){
+          if(en.isIntersecting){
+            if(!best || en.intersectionRatio > best.intersectionRatio) best = en;
+          }
+        });
+        if(best) setActive(best.target.id);
+      }, {rootMargin:"-120px 0px -55% 0px", threshold:[0.05,0.3,0.6]});
+      targets.forEach(function(t){ io.observe(t); });
+    }
+    nav.addEventListener("click", function(e){
+      var a = e.target.closest("a");
+      if(a) setActive(a.getAttribute("href").split("#")[1]);
+    });
+  }
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  "name":"黄页仓库在线观看",
+  "description":"旧片片库索引与版本考据，按片名、年份、修复批次登记片长、画幅、音轨来源与放映渠道。",
+  "inLanguage":"zh-CN"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"同一部片为什么登记了三个片长？","acceptedAnswer":{"@type":"Answer","text":"三个数字分别对应首轮放映、电视播映和修复后版本。旧片在流转中常被剪去片段或加映内容，片库把每个数字的出处单独写明，而不是取最长的一个当唯一答案。"}},
+    {"@type":"Question","name":"标了“实体拷贝存档”的条目能在线看吗？","acceptedAnswer":{"@type":"Answer","text":"不能。这一类表示只确认了拷贝存在与存放机构，没有可观看的数字化渠道。条目页会写最近一次公开放映的日期和场合。"}},
+    {"@type":"Question","name":"默片配乐版为什么有两条音轨记录？","acceptedAnswer":{"@type":"Answer","text":"默片原始无音轨，配乐是后来加的。《神女》现有 1990 年配乐与 2014 年新配乐两条，节奏和情绪处理不同，分开登记并各标配乐者与录制年份。"}},
+    {"@type":"Question","name":"中英文字幕上下分排，是修复时加的吗？","acceptedAnswer":{"@type":"Answer","text":"多数不是。1960 年代前后的港产片常由片方自行译制英文字幕，直接印在拷贝上。修复时通常保留原字幕层，另加现代字幕轨。"}},
+    {"@type":"Question","name":"画幅比例更正后，以前的笔记还有效吗？","acceptedAnswer":{"@type":"Answer","text":"构图相关的结论要复核，剧情、人物、台词的分析不受影响。《小城之春》从 1.33 更正为 1.37 后，有 23 条引用旧比例的笔记进了复核队列。"}},
+    {"@type":"Question","name":"戏曲电影和舞台记录片怎么区分？","acceptedAnswer":{"@type":"Answer","text":"看机位与剪辑。戏曲电影按电影分镜拍摄，有特写、反打和外景；舞台记录片以固定机位为主，保留完整场次与幕间。片库标注电影化程度高、中、记录式三档。"}}
+  ]
+}
+</script>
+</body>
+            </html>
